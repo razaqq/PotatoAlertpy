@@ -31,7 +31,7 @@ import argparse
 import traceback
 from json import JSONDecodeError
 from hashlib import md5
-from aiohttp.client_exceptions import ClientResponseError, ClientError, ClientConnectionError
+from aiohttp.client_exceptions import ClientResponseError, ClientError, ClientConnectionError, WSServerHandshakeError
 from utils.config import Config
 from asyncqt import QEventLoop
 from utils.central_api import CentralApi
@@ -143,6 +143,9 @@ class PotatoAlert:
             except ClientConnectionError:
                 logging.exception('Check your internet connection!')
                 self.signals.status.emit(3, 'Connection')
+            except WSServerHandshakeError:
+                logging.exception('Failed handshake with server')
+                self.signals.status.emit(3, 'Server Handshake')
             except ConnectionRefusedError:
                 logging.exception('Connection refused by remote host!')
                 self.signals.status.emit(3, 'Central Server')
