@@ -57,7 +57,7 @@ async def check_update():
     update_needed = False
     if getattr(sys, 'frozen', False):
         try:
-            url = 'https://raw.githubusercontent.com/razaqq/PotatoAlert/master/version.py'
+            url = 'https://raw.githubusercontent.com/razaqq/PotatoAlertpy/master/version.py'
             async with ClientSession() as s:
                 async with s.get(url) as resp:
                     new_version = await resp.text()
@@ -73,7 +73,7 @@ async def check_update():
 
 async def update():
     try:
-        url = 'https://github.com/razaqq/PotatoAlert/releases/latest/download/potatoalert_x64.exe'
+        url = 'https://github.com/razaqq/PotatoAlertpy/releases/latest/download/potatoalert_x64.exe'
         async with ClientSession() as s:
             async with s.get(url) as resp:
                 if resp.status == 200:
@@ -114,7 +114,7 @@ def queue_update():
 
 async def get_changelog():
     try:
-        url = 'https://api.github.com/repos/razaqq/PotatoAlert/releases/latest'
+        url = 'https://api.github.com/repos/razaqq/PotatoAlertpy/releases/latest'
         async with ClientSession() as s:
             async with s.get(url) as resp:
                 res = await resp.json()
