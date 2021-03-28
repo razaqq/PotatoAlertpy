@@ -192,8 +192,8 @@ class ModernDialog(QDialog, BorderlessWindow):
         self.title_bar.btn_minimize.setVisible(False)
         self.title_bar.btn_restore.setVisible(False)
 
-        self.hLayout.addWidget(self.title_bar)
-        self.hLayout.addWidget(self.window_content)
+        self.hLayout.addWidget(self.title_bar, alignment=Qt.AlignTop)
+        self.hLayout.addWidget(self.window_content, alignment=Qt.AlignVCenter)
 
     def setLayout(self, layout):
         self.window_content.setLayout(layout)

@@ -350,6 +350,72 @@ class MainWindow(QMainWindow):
         d.setWindowTitle('')
         d.exec()
 
+    def show_rework(self):
+        d = windows.ModernDialog(self)
+        d.setMinimumWidth(450)
+        d.setFixedHeight(150)
+        # d.setStyleSheet('border: 1px solid red')
+
+        main_layout = QVBoxLayout()
+        main_layout.setSpacing(10)
+
+        row_layout = QHBoxLayout()
+        row_layout.setSpacing(10)
+        row_layout.setContentsMargins(0, 0, 0, 0)
+
+        pix = QPixmap(resource_path('./assets/potato.png'))
+        pix = pix.scaled(60, 60)
+        img = QLabel()
+        img.setPixmap(pix)
+        row_layout.addWidget(img, alignment=Qt.AlignCenter)
+
+        changelog_widget = QWidget(flags=self.flags)
+        changelog_layout = QVBoxLayout()
+        changelog_layout.setSpacing(10)
+        changelog_layout.setContentsMargins(0, 0, 0, 0)
+
+        text = """
+        THIS VERSION IS END OF LIFE!<br>
+        <br>
+        There will be no more support or updates.<br>
+        Please download the new version from <a href=\"https://github.com/razaqq/PotatoAlertpy/releases/latest/download/PotatoAlert.zip\">HERE</a>.<br>
+        <br>
+        This message will only be shown once.<br>
+        """
+
+        font = QFont()
+        font.setPointSize(12)
+        text1 = QLabel(text)
+        text1.setTextFormat(Qt.RichText)
+        text1.setFont(font)
+        text1.setAlignment(Qt.AlignCenter)
+        text1.setOpenExternalLinks(True)
+        changelog_layout.addWidget(text1, alignment=Qt.AlignCenter)
+
+        changelog_widget.setLayout(changelog_layout)
+        row_layout.addWidget(changelog_widget, alignment=Qt.AlignCenter)
+
+        row_widget = QWidget(flags=self.flags)
+        row_widget.setLayout(row_layout)
+        row_widget.adjustSize()
+        main_layout.addWidget(row_widget, alignment=Qt.AlignCenter)
+
+        ok_btn = QPushButton('OK')
+        ok_btn.setDefault(False)
+        ok_btn.setAutoDefault(False)
+        ok_btn.setFixedWidth(100)
+        ok_btn.clicked.connect(d.accept)
+
+        def seen():
+            self.config['DEFAULT']['seen_rework'] = 'true'
+            self.config.save()
+        ok_btn.clicked.connect(seen)
+        main_layout.addWidget(ok_btn, alignment=Qt.AlignCenter)
+
+        d.setLayout(main_layout)
+        d.setWindowTitle('')
+        d.exec()
+
     def switch_tab(self, new: int):
         old = self.menu_bar.btn_group.checkedId()
         tabs = {

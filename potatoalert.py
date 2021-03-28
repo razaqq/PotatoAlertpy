@@ -212,6 +212,8 @@ if __name__ == '__main__':
         if args.show_changelog:
             changelog = loop.run_until_complete(updater.get_changelog())
             ui.show_changelog(__version__, changelog)
+        if not pa.config['DEFAULT'].getboolean('seen_rework'):
+            ui.show_rework()
 
         if pa.config['DEFAULT'].getboolean('ga'):
             loop.run_until_complete(run_ga())

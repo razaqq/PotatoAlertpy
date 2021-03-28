@@ -81,6 +81,9 @@ class Config(ConfigParser):
         if 'use_central_api' not in self['DEFAULT']:
             ok = False
             self['DEFAULT']['use_central_api'] = 'true'
+        if 'seen_rework' not in self['DEFAULT']:
+            ok = False
+            self['DEFAULT']['seen_rework'] = 'false'
         self.save()
         if not ok:
             self.read_config()
