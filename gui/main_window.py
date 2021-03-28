@@ -404,11 +404,11 @@ class MainWindow(QMainWindow):
         ok_btn.setDefault(False)
         ok_btn.setAutoDefault(False)
         ok_btn.setFixedWidth(100)
-        ok_btn.clicked.connect(d.accept)
 
         def seen():
             self.config['DEFAULT']['seen_rework'] = 'true'
             self.config.save()
+            d.accept()
         ok_btn.clicked.connect(seen)
         main_layout.addWidget(ok_btn, alignment=Qt.AlignCenter)
 
