@@ -378,7 +378,7 @@ class MainWindow(QMainWindow):
         THIS VERSION IS END OF LIFE!<br>
         <br>
         There will be no more support or updates.<br>
-        Please download the new version from <a href=\"https://github.com/razaqq/PotatoAlertpy/releases/latest/download/PotatoAlert.zip\">HERE</a>.<br>
+        Please download the new version from <a href=\"https://github.com/razaqq/PotatoAlert/releases/latest/download/PotatoAlert.zip\">HERE</a>.<br>
         <br>
         This message will only be shown once.<br>
         """
